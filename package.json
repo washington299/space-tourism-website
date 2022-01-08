@@ -9,6 +9,7 @@
     "lint": "eslint src",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
+		"test:coverage": "yarn test --coverage --watchAll=true",
     "postinstall": "husky install",
     "prepare": "husky install"
   },

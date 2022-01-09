@@ -2,16 +2,20 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useWindowSize } from "hooks/useWindowSize";
+
 export const Header = () => {
 	const [isMenuMobileOpen, setIsMenuMobileOpen] = useState(false);
 
+	const { width } = useWindowSize();
+
 	return (
-		<header className="flex justify-between items-center p-6">
+		<header className="flex justify-between items-center p-6 md:py-16 md:px-14">
 			<Image
 				src="/assets/shared/logo.svg"
 				alt="logo"
-				width={40}
-				height={40}
+				width={width > 768 ? 48 : 40}
+				height={width > 768 ? 48 : 40}
 				aria-label="Logo"
 				className="cursor-pointer"
 			/>

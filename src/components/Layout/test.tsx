@@ -3,6 +3,17 @@ import { render, screen } from "@testing-library/react";
 
 import { Layout } from ".";
 
+jest.mock("next/router", () => ({
+	useRouter() {
+		return {
+			route: "/",
+			pathname: "/",
+			query: "",
+			asPath: "",
+		};
+	},
+}));
+
 describe("<Layout />", () => {
 	it("Should render correct backgoundImage and children element", () => {
 		render(

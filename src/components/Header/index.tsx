@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useWindowSize } from "hooks/useWindowSize";
 
@@ -9,8 +10,17 @@ export const Header = () => {
 
 	const { width } = useWindowSize();
 
+	const router = useRouter();
+
+	const paths = {
+		home: "/",
+		destination: "/destination",
+		crew: "/crew",
+		technology: "/technology",
+	};
+
 	return (
-		<header className="flex justify-between items-center p-6 md:py-16 md:px-14">
+		<header className="flex justify-between items-center p-6 md:pl-6 md:pr-0 md:py-0 lg:pl-10 lg:py-10">
 			<Image
 				src="/assets/shared/logo.svg"
 				alt="logo"
@@ -19,6 +29,59 @@ export const Header = () => {
 				aria-label="Logo"
 				className="cursor-pointer"
 			/>
+
+			<nav className="hidden px-12 bg-gray/10 backdrop-blur-[81px] md:flex md:justify-center lg:w-3/5">
+				<ul className="flex space-x-10 font-barlow-condensed text-white uppercase xl:space-x-16">
+					<li
+						className={`tracking-wider py-10 ${
+							router.pathname === paths.home && "border-b-2 border-white"
+						}`}
+					>
+						<Link href={paths.home}>
+							<a className="flex space-x-3">
+								<span className="font-bold">00</span>
+								<span className="tracking-wider">Home</span>
+							</a>
+						</Link>
+					</li>
+					<li
+						className={`tracking-wider py-10 ${
+							router.pathname === paths.destination && "border-b-2 border-white"
+						}`}
+					>
+						<Link href={paths.destination}>
+							<a className="flex space-x-3">
+								<span className="font-bold">01</span>
+								<span className="tracking-wider">Destination</span>
+							</a>
+						</Link>
+					</li>
+					<li
+						className={`tracking-wider py-10 ${
+							router.pathname === paths.crew && "border-b-2 border-white"
+						}`}
+					>
+						<Link href={paths.crew}>
+							<a className="flex space-x-3">
+								<span className="font-bold">02</span>
+								<span className="tracking-wider">Crew</span>
+							</a>
+						</Link>
+					</li>
+					<li
+						className={`tracking-wider py-10 ${
+							router.pathname === paths.technology && "border-b-2 border-white"
+						}`}
+					>
+						<Link href={paths.technology}>
+							<a className="flex space-x-3">
+								<span className="font-bold">03</span>
+								<span className="tracking-wider">Technology</span>
+							</a>
+						</Link>
+					</li>
+				</ul>
+			</nav>
 
 			{!isMenuMobileOpen && (
 				<div className="md:hidden">

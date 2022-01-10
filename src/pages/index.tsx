@@ -1,5 +1,7 @@
+import { HomeTemplate } from "templates/Home";
+
 const Home = () => {
-	return <h1 className="font-bold font-barlow-condensed text-xl">VENUS</h1>;
+	return <HomeTemplate />;
 };
 
 export default Home;

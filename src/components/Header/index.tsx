@@ -100,7 +100,7 @@ export const Header = () => {
 			{isMenuMobileOpen && (
 				<div
 					data-testid="menu mobile"
-					className="absolute top-0 right-0 bottom-0 flex flex-col items-end px-6 py-8 w-[254px] bg-white/10 backdrop-blur-[81px] md:hidden"
+					className="absolute z-10 top-0 right-0 bottom-0 flex flex-col items-end px-6 py-8 w-[254px] bg-white/10 backdrop-blur-[81px] md:hidden"
 				>
 					<Image
 						src="/assets/shared/icon-close.svg"

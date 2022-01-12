@@ -10,7 +10,7 @@ export const Layout = ({ backgroundImage, children }: LayoutTypes) => {
 		<div
 			data-testid="background image"
 			style={{ backgroundImage: `url(${backgroundImage})` }}
-			className="w-full h-screen bg-no-repeat bg-cover"
+			className="fixed inset-0 bg-no-repeat bg-cover overflow-y-auto"
 		>
 			<Header />
 			{children}

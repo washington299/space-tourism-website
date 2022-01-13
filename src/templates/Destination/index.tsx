@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import { Layout } from "components/Layout";
@@ -8,11 +8,11 @@ import { useWindowSize } from "hooks/useWindowSize";
 import { DestinationsTypes } from "types/destinations";
 
 export const DestinationTemplate = ({ destinations }: DestinationsTypes) => {
-	// const [currentDestination, setCurrentDestination] = useState("Moon");
+	const [currentDestination, setCurrentDestination] = useState("Moon");
 
 	const { width } = useWindowSize();
 
-	const destination = destinations?.find(item => item.name === "Moon");
+	const destination = destinations?.find(item => item.name === currentDestination);
 
 	const destinationBackgroundImage =
 		width < 768
@@ -20,6 +20,9 @@ export const DestinationTemplate = ({ destinations }: DestinationsTypes) => {
 			: width < 1024
 			? "/assets/destination/background-destination-tablet.jpg"
 			: "/assets/destination/background-destination-desktop.jpg";
+
+	const activeButtonStyle = "text-white border-b-[1px]";
+	const disableButtonStyle = "text-light border-0";
 
 	return (
 		<Layout backgroundImage={destinationBackgroundImage}>
@@ -32,26 +35,21 @@ export const DestinationTemplate = ({ destinations }: DestinationsTypes) => {
 
 					<div className="flex flex-col items-center">
 						<div className="relative w-[170px] h-[170px] mt-8">
-							<Image
-								src="/assets/destination/image-moon.png"
-								alt={destination?.name}
-								layout="fill"
-							/>
+							<Image src={destination?.images.png || ""} alt={destination?.name} layout="fill" />
 						</div>
 
 						<div className="flex space-x-4 mt-4">
-							<button className="text-light font-barlow-condensed tracking-wide uppercase">
-								Moon
-							</button>
-							<button className="text-light font-barlow-condensed tracking-wide uppercase">
-								Mars
-							</button>
-							<button className="text-light font-barlow-condensed tracking-wide uppercase">
-								Europa
-							</button>
-							<button className="text-light font-barlow-condensed tracking-wide uppercase">
-								Titan
-							</button>
+							{destinations?.map(({ name }) => (
+								<button
+									key={name}
+									className={`font-barlow-condensed tracking-wide uppercase p-1 ${
+										currentDestination === name ? activeButtonStyle : disableButtonStyle
+									}`}
+									onClick={() => setCurrentDestination(name)}
+								>
+									{name}
+								</button>
+							))}
 						</div>
 
 						<h2 className="font-bellefair text-white text-xl uppercase mt-4">

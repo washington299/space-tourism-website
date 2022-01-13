@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { DestinationTemplate } from ".";
@@ -13,6 +14,18 @@ jest.mock("next/router", () => ({
 		};
 	},
 }));
+
+const clickOnButtonAndExpectDestinationInfo = (name: string) => {
+	const destination = mockData.destinations?.find(item => item.name === name);
+
+	fireEvent.click(screen.getByRole("button", { name }));
+
+	expect(screen.getByAltText(destination!.name)).toBeInTheDocument();
+	expect(screen.getByText(destination!.description)).toBeInTheDocument();
+	expect(screen.getByText(destination!.distance)).toBeInTheDocument();
+	expect(screen.getByText(destination!.travel)).toBeInTheDocument();
+	expect(screen.getByRole("heading", { name: destination!.name })).toBeInTheDocument();
+};
 
 describe("<DestinationTemplate />", () => {
 	it("Should render moon data by default", () => {
@@ -30,44 +43,9 @@ describe("<DestinationTemplate />", () => {
 	it("Should change planet when another one is selected", () => {
 		render(<DestinationTemplate destinations={mockData.destinations} />);
 
-		fireEvent.click(screen.getByRole("button", { name: /Mars/i }));
-
-		expect(screen.getByAltText(mockData.destinations[1].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[1].description)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[1].distance)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[1].travel)).toBeInTheDocument();
-		expect(
-			screen.getByRole("heading", { name: mockData.destinations[1].name }),
-		).toBeInTheDocument();
-
-		fireEvent.click(screen.getByRole("button", { name: /Europa/i }));
-
-		expect(screen.getByAltText(mockData.destinations[2].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[2].description)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[2].distance)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[2].travel)).toBeInTheDocument();
-		expect(
-			screen.getByRole("heading", { name: mockData.destinations[2].name }),
-		).toBeInTheDocument();
-
-		fireEvent.click(screen.getByRole("button", { name: /Titan/i }));
-
-		expect(screen.getByAltText(mockData.destinations[3].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[3].description)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[3].distance)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[3].travel)).toBeInTheDocument();
-		expect(
-			screen.getByRole("heading", { name: mockData.destinations[3].name }),
-		).toBeInTheDocument();
-
-		fireEvent.click(screen.getByRole("button", { name: /Moon/i }));
-
-		expect(screen.getByAltText(mockData.destinations[0].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[0].description)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[0].distance)).toBeInTheDocument();
-		expect(screen.getByText(mockData.destinations[0].travel)).toBeInTheDocument();
-		expect(
-			screen.getByRole("heading", { name: mockData.destinations[0].name }),
-		).toBeInTheDocument();
+		clickOnButtonAndExpectDestinationInfo("Mars");
+		clickOnButtonAndExpectDestinationInfo("Europa");
+		clickOnButtonAndExpectDestinationInfo("Titan");
+		clickOnButtonAndExpectDestinationInfo("Moon");
 	});
 });

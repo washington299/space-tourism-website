@@ -122,7 +122,7 @@ export const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link href="/">
+							<Link href="/destination">
 								<a className="flex space-x-3">
 									<span className="font-bold">01</span>
 									<span className="tracking-wider">Destination</span>
@@ -130,7 +130,7 @@ export const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link href="/">
+							<Link href="/crew">
 								<a className="flex space-x-3">
 									<span className="font-bold">02</span>
 									<span className="tracking-wider">Crew</span>
@@ -138,7 +138,7 @@ export const Header = () => {
 							</Link>
 						</li>
 						<li>
-							<Link href="/">
+							<Link href="/technology">
 								<a className="flex space-x-3">
 									<span className="font-bold">03</span>
 									<span className="tracking-wider">Technology</span>

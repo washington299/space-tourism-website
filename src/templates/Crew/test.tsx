@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { CrewTemplate } from ".";
@@ -14,6 +15,17 @@ jest.mock("next/router", () => ({
 	},
 }));
 
+const clickOnButtonAndExpectCrewInformation = (name: string) => {
+	const crew = mockData.crew.find(item => item.name === name);
+
+	fireEvent.click(screen.getByTitle(name));
+
+	expect(screen.getByAltText(crew!.name)).toBeInTheDocument();
+	expect(screen.getByText(crew!.role)).toBeInTheDocument();
+	expect(screen.getByText(crew!.name)).toBeInTheDocument();
+	expect(screen.getByText(crew!.bio)).toBeInTheDocument();
+};
+
 describe("<CrewTemplate />", () => {
 	it("Should render Douglas Hurley information by default", () => {
 		render(<CrewTemplate crew={mockData.crew} />);
@@ -27,32 +39,9 @@ describe("<CrewTemplate />", () => {
 	it("Should change crew information when button is clicked", () => {
 		render(<CrewTemplate crew={mockData.crew} />);
 
-		fireEvent.click(screen.getByTitle(mockData.crew[1].name));
-
-		expect(screen.getByAltText(mockData.crew[1].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[1].role)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[1].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[1].bio)).toBeInTheDocument();
-
-		fireEvent.click(screen.getByTitle(mockData.crew[2].name));
-
-		expect(screen.getByAltText(mockData.crew[2].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[2].role)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[2].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[2].bio)).toBeInTheDocument();
-
-		fireEvent.click(screen.getByTitle(mockData.crew[3].name));
-
-		expect(screen.getByAltText(mockData.crew[3].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[3].role)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[3].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[3].bio)).toBeInTheDocument();
-
-		fireEvent.click(screen.getByTitle(mockData.crew[0].name));
-
-		expect(screen.getByAltText(mockData.crew[0].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[0].role)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[0].name)).toBeInTheDocument();
-		expect(screen.getByText(mockData.crew[0].bio)).toBeInTheDocument();
+		clickOnButtonAndExpectCrewInformation("Mark Shuttleworth");
+		clickOnButtonAndExpectCrewInformation("Victor Glover");
+		clickOnButtonAndExpectCrewInformation("Anousheh Ansari");
+		clickOnButtonAndExpectCrewInformation("Douglas Hurley");
 	});
 });

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 
 import { Layout } from "components/Layout";
@@ -7,6 +8,10 @@ import { useWindowSize } from "hooks/useWindowSize";
 import { CrewTypes } from "types/crew";
 
 export const CrewTemplate = ({ crew }: CrewTypes) => {
+	const [currentCrew, setCurrentCrew] = useState("Douglas Hurley");
+
+	const filteredCrew = crew.find(item => item.name === currentCrew);
+
 	const { width } = useWindowSize();
 
 	const crewBackgroundImage =
@@ -26,22 +31,48 @@ export const CrewTemplate = ({ crew }: CrewTypes) => {
 
 				<div className="flex flex-col items-center">
 					<div className="relative w-[150px] h-[220px] mt-8">
-						<Image src={crew[0].images.png} alt={crew[0].name} layout="fill" />
+						<Image src={filteredCrew?.images.png || ""} alt={filteredCrew?.name} layout="fill" />
 					</div>
 
 					<div className="w-full h-[1px] border-b-[1px] border-gray" />
 
 					<div className="flex space-x-4 mt-8">
-						<button className="h-[10px] w-[10px] bg-gray rounded-full" />
-						<button className="h-[10px] w-[10px] bg-gray rounded-full" />
-						<button className="h-[10px] w-[10px] bg-gray rounded-full" />
-						<button className="h-[10px] w-[10px] bg-gray rounded-full" />
+						<button
+							className={`h-[10px] w-[10px] bg-gray rounded-full ${
+								currentCrew === crew[0].name && "bg-white"
+							}`}
+							title={crew[0].name}
+							onClick={() => setCurrentCrew(crew[0].name)}
+						/>
+						<button
+							className={`h-[10px] w-[10px] bg-gray rounded-full ${
+								currentCrew === crew[1].name && "bg-white"
+							}`}
+							title={crew[1].name}
+							onClick={() => setCurrentCrew(crew[1].name)}
+						/>
+						<button
+							className={`h-[10px] w-[10px] bg-gray rounded-full ${
+								currentCrew === crew[2].name && "bg-white"
+							}`}
+							title={crew[2].name}
+							onClick={() => setCurrentCrew(crew[2].name)}
+						/>
+						<button
+							className={`h-[10px] w-[10px] bg-gray rounded-full ${
+								currentCrew === crew[3].name && "bg-white"
+							}`}
+							title={crew[3].name}
+							onClick={() => setCurrentCrew(crew[3].name)}
+						/>
 					</div>
 
 					<section className="flex flex-col items-center mt-8">
-						<div className="text-gray uppercase font-bellefair">{crew[0].role}</div>
-						<h2 className="text-white text-[24px] uppercase font-bellefair">{crew[0].name}</h2>
-						<p className="text-light text-xs text-center font mt-4">{crew[0].bio}</p>
+						<div className="text-gray uppercase font-bellefair">{filteredCrew?.role}</div>
+						<h2 className="text-white text-[24px] uppercase font-bellefair">
+							{filteredCrew?.name}
+						</h2>
+						<p className="text-light text-xs text-center font mt-4">{filteredCrew?.bio}</p>
 					</section>
 				</div>
 			</main>

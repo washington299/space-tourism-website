@@ -37,34 +37,16 @@ export const CrewTemplate = ({ crew }: CrewTypes) => {
 					<div className="w-full h-[1px] border-b-[1px] border-gray" />
 
 					<div className="flex space-x-4 mt-8">
-						<button
-							className={`h-[10px] w-[10px] bg-gray rounded-full ${
-								currentCrew === crew[0].name && "bg-white"
-							}`}
-							title={crew[0].name}
-							onClick={() => setCurrentCrew(crew[0].name)}
-						/>
-						<button
-							className={`h-[10px] w-[10px] bg-gray rounded-full ${
-								currentCrew === crew[1].name && "bg-white"
-							}`}
-							title={crew[1].name}
-							onClick={() => setCurrentCrew(crew[1].name)}
-						/>
-						<button
-							className={`h-[10px] w-[10px] bg-gray rounded-full ${
-								currentCrew === crew[2].name && "bg-white"
-							}`}
-							title={crew[2].name}
-							onClick={() => setCurrentCrew(crew[2].name)}
-						/>
-						<button
-							className={`h-[10px] w-[10px] bg-gray rounded-full ${
-								currentCrew === crew[3].name && "bg-white"
-							}`}
-							title={crew[3].name}
-							onClick={() => setCurrentCrew(crew[3].name)}
-						/>
+						{crew.map(crew => (
+							<button
+								key={crew.name}
+								className={`h-[10px] w-[10px] bg-gray rounded-full ${
+									currentCrew === crew.name && "bg-white"
+								}`}
+								title={crew.name}
+								onClick={() => setCurrentCrew(crew.name)}
+							/>
+						))}
 					</div>
 
 					<section className="flex flex-col items-center mt-8">

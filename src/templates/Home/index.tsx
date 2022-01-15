@@ -17,7 +17,7 @@ export const HomeTemplate = () => {
 	return (
 		<Layout backgroundImage={homeBackgroundImage}>
 			<div className="h-4/5 flex flex-col items-center justify-between lg:flex-row lg:justify-around lg:items-end lg:pb-[20px] lg:h-4/6 xl:pb-0">
-				<section className="flex flex-col items-center mt-6 px-6 md:max-w-md md:m-auto md:mt-0 lg:m-0 lg:items-start lg:px-0">
+				<section className="flex flex-col items-center mt-6 px-6 md:max-w-md md:m-auto md:mt-16 lg:m-0 lg:items-start lg:px-0">
 					<p className="text-light font-barlow-condensed tracking-wider text-center uppercase md:text-md lg:text-[18px] xl:text-md">
 						So, you want to travel to
 					</p>

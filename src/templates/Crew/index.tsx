@@ -36,7 +36,7 @@ export const CrewTemplate = ({ crew }: CrewTypes) => {
 
 					<div className="w-full h-[1px] border-b-[1px] border-gray md:hidden" />
 
-					<div className="flex flex-col md:flex-col-reverse items-center lg:items-start lg:flex-col-reverse">
+					<div className="flex flex-col items-center md:flex-col-reverse lg:items-start lg:flex-col-reverse">
 						<div className="flex space-x-4 mt-8 lg:mt-28">
 							{crew.map(crew => (
 								<button
@@ -57,7 +57,7 @@ export const CrewTemplate = ({ crew }: CrewTypes) => {
 							<h2 className="text-white text-[24px] uppercase font-bellefair md:text-[40px] xl:text-xl">
 								{filteredCrew?.name}
 							</h2>
-							<p className="text-light text-xs text-center font mt-4 lg:text-left xl:text-[18px]">
+							<p className="text-light text-xs text-center mt-4 lg:text-left xl:text-[18px]">
 								{filteredCrew?.bio}
 							</p>
 						</section>

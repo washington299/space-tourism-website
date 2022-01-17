@@ -1,23 +1,9 @@
-import { GetStaticProps } from "next";
-
-import { QUERY } from "services/queries";
+import data from "utils/data";
 
 import { CrewTemplate } from "templates/Crew";
 
-import { CrewTypes } from "types/crew";
-
-const Crew = ({ crew }: CrewTypes) => {
-	return <CrewTemplate crew={crew} />;
+const Crew = () => {
+	return <CrewTemplate crew={data.crew} />;
 };
 
 export default Crew;
-
-export const getStaticProps: GetStaticProps = async () => {
-	const { data } = await QUERY.getCrews();
-
-	return {
-		props: {
-			crew: data,
-		},
-	};
-};

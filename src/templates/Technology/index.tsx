@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Layout } from "components/Layout";
+import { Title } from "components/Title";
 
 import { useWindowSize } from "hooks/useWindowSize";
 
@@ -25,10 +26,7 @@ export const TechnologyTemplate = ({ technology }: TechnologyTypes) => {
 		<Layout backgroundImage={technologyBackgroundImage}>
 			<main className="mb-6 md:mt-10">
 				<section>
-					<h1 className="text-white font-barlow-condensed tracking-wider uppercase text-center md:text-[20px] lg:text-md">
-						{" "}
-						<span className="text-gray font-bold inline-block mr-2">03</span> Space launch 101
-					</h1>
+					<Title number="03" text="space launch 101" />
 
 					<div className="mt-8 lg:flex lg:flex-row-reverse lg:w-full">
 						<div className="relative h-[170px] md:h-[320px] lg:w-[400px] lg:h-[500px] lg:ml-20 xl:w-[500px] xl:h-[500px]">

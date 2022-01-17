@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Layout } from "components/Layout";
+import { Title } from "components/Title";
 
 import { useWindowSize } from "hooks/useWindowSize";
 
@@ -24,10 +25,7 @@ export const CrewTemplate = ({ crew }: CrewTypes) => {
 	return (
 		<Layout backgroundImage={crewBackgroundImage}>
 			<main className="px-6 pb-6 md:mt-10">
-				<h1 className="text-white font-barlow-condensed tracking-wider uppercase text-center md:text-[20px] lg:text-md">
-					{" "}
-					<span className="text-gray font-bold inline-block mr-2">02</span> Meet your crew
-				</h1>
+				<Title number="02" text="meet your crew" />
 
 				<div className="flex flex-col items-center md:flex-col-reverse lg:flex-row-reverse lg:justify-around">
 					<div className="relative w-[150px] h-[220px] mt-8 md:mt-10 md:w-[450px] md:h-[572px]">

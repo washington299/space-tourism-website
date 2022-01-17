@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Layout } from "components/Layout";
+import { Title } from "components/Title";
 
 import { useWindowSize } from "hooks/useWindowSize";
 
@@ -28,10 +29,7 @@ export const DestinationTemplate = ({ destinations }: DestinationsTypes) => {
 		<Layout backgroundImage={destinationBackgroundImage}>
 			<main className="px-6 md:my-10 md:mx-auto md:max-w-[600px] lg:max-w-[80%]">
 				<section>
-					<h1 className="text-white font-barlow-condensed tracking-wider uppercase text-center md:text-[20px] lg:text-md">
-						{" "}
-						<span className="text-gray font-bold inline-block mr-2">01</span> Pick your destination
-					</h1>
+					<Title number="01" text="pick your destination" />
 
 					<div className="flex flex-col items-center lg:flex-row lg:items-start lg:space-x-24 lg:mt-10 xl:justify-evenly">
 						<div className="relative w-[170px] h-[170px] mt-8 md:w-[300px] md:h-[300px] xl:w-[445px] xl:h-[445px]">

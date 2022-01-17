@@ -45,15 +45,16 @@ export const TechnologyTemplate = ({ technology }: TechnologyTypes) => {
 
 						<div className="px-6">
 							<div className="flex justify-center space-x-4 mt-8">
-								<button className="w-[40px] h-[40px] text-white border border-gray rounded-full">
-									1
-								</button>
-								<button className="w-[40px] h-[40px] text-white border border-gray rounded-full">
-									2
-								</button>
-								<button className="w-[40px] h-[40px] text-white border border-gray rounded-full">
-									3
-								</button>
+								{technology.map((item, index) => (
+									<button
+										key={item.name}
+										className={`w-[40px] h-[40px] border border-gray rounded-full ${
+											item.name === currentTechnology ? "bg-white text-dark" : "bg-dark text-white"
+										}`}
+									>
+										{index + 1}
+									</button>
+								))}
 							</div>
 
 							<section className="flex flex-col items-center mt-8">

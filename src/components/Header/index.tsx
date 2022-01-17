@@ -27,14 +27,18 @@ export const Header = () => {
 
 	return (
 		<header className="flex justify-between items-center p-6 md:pl-6 md:pr-0 md:py-0 lg:pl-10 lg:py-10">
-			<Image
-				src="/assets/shared/logo.svg"
-				alt="logo"
-				width={width > 768 ? 48 : 40}
-				height={width > 768 ? 48 : 40}
-				aria-label="Logo"
-				className="cursor-pointer"
-			/>
+			<Link href="/">
+				<a>
+					<Image
+						src="/assets/shared/logo.svg"
+						alt="logo"
+						width={width > 768 ? 48 : 40}
+						height={width > 768 ? 48 : 40}
+						aria-label="Logo"
+						className="cursor-pointer"
+					/>
+				</a>
+			</Link>
 
 			<nav className="hidden px-12 bg-gray/10 backdrop-blur-[81px] md:flex md:justify-center lg:w-3/5">
 				<ul className="flex space-x-10 font-barlow-condensed text-white uppercase xl:space-x-16">

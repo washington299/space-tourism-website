@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { TechnologyTemplate } from ".";
@@ -14,6 +15,18 @@ jest.mock("next/router", () => ({
 	},
 }));
 
+const clickOnButtonAndExpectTechnologyData = (buttonLabel: string) => {
+	const technology = mockData.technology.find(
+		(_item, index) => index + 1 === parseInt(buttonLabel),
+	);
+
+	fireEvent.click(screen.getByRole("button", { name: buttonLabel }));
+
+	expect(screen.getByAltText(technology!.name)).toBeInTheDocument();
+	expect(screen.getByRole("heading", { name: technology!.name })).toBeInTheDocument();
+	expect(screen.getByText(technology!.description)).toBeInTheDocument();
+};
+
 describe("<TechnologyTemplate />", () => {
 	it("Should render first option by default", () => {
 		render(<TechnologyTemplate technology={mockData.technology} />);
@@ -26,22 +39,8 @@ describe("<TechnologyTemplate />", () => {
 	it("Should change data when clicked on buttons", () => {
 		render(<TechnologyTemplate technology={mockData.technology} />);
 
-		fireEvent.click(screen.getByRole("button", { name: "2" }));
-
-		expect(screen.getByAltText(mockData.technology[1].name)).toBeInTheDocument();
-		expect(screen.getByRole("heading", { name: mockData.technology[1].name })).toBeInTheDocument();
-		expect(screen.getByText(mockData.technology[1].description)).toBeInTheDocument();
-
-		fireEvent.click(screen.getByRole("button", { name: "3" }));
-
-		expect(screen.getByAltText(mockData.technology[2].name)).toBeInTheDocument();
-		expect(screen.getByRole("heading", { name: mockData.technology[2].name })).toBeInTheDocument();
-		expect(screen.getByText(mockData.technology[2].description)).toBeInTheDocument();
-
-		fireEvent.click(screen.getByRole("button", { name: "1" }));
-
-		expect(screen.getByAltText(mockData.technology[0].name)).toBeInTheDocument();
-		expect(screen.getByRole("heading", { name: mockData.technology[0].name })).toBeInTheDocument();
-		expect(screen.getByText(mockData.technology[0].description)).toBeInTheDocument();
+		clickOnButtonAndExpectTechnologyData("2");
+		clickOnButtonAndExpectTechnologyData("3");
+		clickOnButtonAndExpectTechnologyData("1");
 	});
 });

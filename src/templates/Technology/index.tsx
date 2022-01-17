@@ -8,7 +8,7 @@ import { useWindowSize } from "hooks/useWindowSize";
 import { TechnologyTypes } from "types/technology";
 
 export const TechnologyTemplate = ({ technology }: TechnologyTypes) => {
-	const [currentTechnology] = useState("Launch vehicle");
+	const [currentTechnology, setCurrentTechnology] = useState("Launch vehicle");
 
 	const { width } = useWindowSize();
 
@@ -51,6 +51,7 @@ export const TechnologyTemplate = ({ technology }: TechnologyTypes) => {
 										className={`w-[40px] h-[40px] border border-gray rounded-full ${
 											item.name === currentTechnology ? "bg-white text-dark" : "bg-dark text-white"
 										}`}
+										onClick={() => setCurrentTechnology(item.name)}
 									>
 										{index + 1}
 									</button>
